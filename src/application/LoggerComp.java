@@ -70,4 +70,8 @@ public class LoggerComp {
             throw new LoggerException("Erro ao escrever log", ex);
         }
     }
+
+    public static void setVerbose(boolean verbose) {
+        LoggerComp.verbose = verbose;
+    }
 }

@@ -37,6 +37,7 @@ public class Lexico {
         tokensGramatica.add(new TokenGramatica(TipoToken.ABRE_PARENTESES, "\\("));
         tokensGramatica.add(new TokenGramatica(TipoToken.FECHA_PARENTESES, "\\)"));
         tokensGramatica.add(new TokenGramatica(TipoToken.MULTIPLICACAO, "\\*"));
+        tokensGramatica.add(new TokenGramatica(TipoToken.DIVISAO, "\\/"));
         tokensGramatica.add(new TokenGramatica(TipoToken.MAIS, "\\+"));
         tokensGramatica.add(new TokenGramatica(TipoToken.MENOS, "\\-"));
         tokensGramatica.add(new TokenGramatica(TipoToken.PONTO_VIRGULA, "\\;"));

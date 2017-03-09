@@ -21,11 +21,17 @@ public class Initialize {
     public static void main(String[] args) {
         String file = null;
         boolean lexico = false;
+        boolean sintatico=false;
+        boolean sem=false;
         for (int i = 0; i < args.length; i++) {
             
             if (args[i].contains("-f=")) {
                 file=args[i].substring(3);
                 
+            }else if(args[i].contains("-ls")){
+                sintatico=true;
+            }else if(args[i].contains("-la")){
+                sem=true;
             }
             else
             if (args[i].contains("-l")) {
@@ -35,7 +41,7 @@ public class Initialize {
         if (file != null) {
             try {
                                             
-                LoggerComp log = LoggerComp.getInstace(true);
+                LoggerComp log = LoggerComp.getInstace(sintatico);
                 Lexico analisador = new Lexico();
                 List<Token> tokens = analisador.analisarArquivo(new File(file));
                 System.out.println("Análise Lexica em andamento...");
@@ -47,14 +53,23 @@ public class Initialize {
                         System.out.printf("%-20s%-20s%-10s%-10s%n", tk.getTipo().toString(), tk.getLexema(), tk.getPosicao_inicial(), tk.getLinha());
                     }
                 }
+                System.out.println("Análise Lexica concluída");
+                System.out.println("Iniciando análise sintática");
                 Sintatico s = new Sintatico();
                 s.a(tokens);
-                System.out.println("Análise Lexica concluída");
+                System.out.println("Análise Sintática concluída");
+                LoggerComp.setVerbose(sem);
+                System.out.println("Iniciando análise semantica");
+                Semantico semantico = new Semantico(tokens);
+                semantico.analiseSemantica();
+                System.out.println("Análise semantica concluída");
             } catch (FileNotFoundException ex) {
                 System.err.println("Erro ao carregar o arquivo fonte");
             } catch (SintaticoException ex) {
                 System.err.println(ex.getMessage());
             } catch (LoggerException ex) {
+                System.err.println(ex.getMessage());
+            } catch (SemanticoException ex) {
                 System.err.println(ex.getMessage());
             }
         }

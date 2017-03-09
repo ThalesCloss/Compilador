@@ -45,7 +45,6 @@ public class Gramatica {
                             new ItemRegraSintatica(TipoToken.IDENTIFICADOR, 12),
                             new ItemRegraSintatica(TipoToken.LEIA, 7),
                             new ItemRegraSintatica(TipoToken.ESCREVA, 8),
-                            new ItemRegraSintatica(TipoToken.IDENTIFICADOR, 12),
                             new ItemRegraSintatica(TipoToken.CONDICIONAL, 18),
                             new ItemRegraSintatica(TipoToken.REPETICAO, 19),
                         }))));

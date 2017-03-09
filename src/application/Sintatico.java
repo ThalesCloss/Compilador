@@ -48,6 +48,8 @@ public class Sintatico {
             else{
                 log.escreverLog("Simbolos-> "+fila.get(0)+":"+tokens.get(tk).getTipo()+" Aplicar Regra "+g.localizaRegra(fila.get(0), tokens.get(tk).getTipo()));
                 int r=g.localizaRegra(fila.get(0), tokens.get(tk).getTipo());
+                if(r==-1)
+                    throw new SintaticoException("Simbolo "+tokens.get(tk).getLexema()+" inválido");
                 fila.remove(0);
                 int x=0;
                 for(TipoToken tm : g.carregarRegra(r)){
